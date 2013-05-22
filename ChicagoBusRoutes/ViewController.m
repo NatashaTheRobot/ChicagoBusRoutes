@@ -123,17 +123,28 @@
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
-    NSString *identifier = @"reuseIdentifier";
+    NSString *busIdentifier = @"busIdentifier";
+    NSString *metraIdentifier = @"metraIdentifier";
+    NSString *paceIdentifier = @"paceIdentifier";
     
-    MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+    MKAnnotationView *annotationView;
     
+    if ([((BusStop *)annotation).interModalTransfer isEqualToString:@"Metra"]) {
+        annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:metraIdentifier];
+    } else if ([((BusStop *)annotation).interModalTransfer isEqualToString:@"Pace"]){
+        annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:paceIdentifier];
+    } else {
+        annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:busIdentifier];
+    }
+        
+        
     if (!annotationView) {
         if ([((BusStop *)annotation).interModalTransfer isEqualToString:@"Metra"]) {
-            annotationView = [[MetraAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+            annotationView = [[MetraAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:metraIdentifier];
         } else if ([((BusStop *)annotation).interModalTransfer isEqualToString:@"Pace"]){
-            annotationView = [[PaceAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+            annotationView = [[PaceAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:paceIdentifier];
         } else {
-            annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+            annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:busIdentifier];
             ((MKPinAnnotationView *)annotationView).pinColor = MKPinAnnotationColorPurple;
             ((MKPinAnnotationView *)annotationView).animatesDrop = YES;
         }
