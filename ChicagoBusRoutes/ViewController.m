@@ -25,6 +25,7 @@
 - (IBAction)mapListToggle:(id)sender;
 
 - (void)getBusStops;
+- (void)addPolygonOverlay;
 
 @end
 
@@ -44,6 +45,7 @@
     __mapView.region = region;
         
     [self getBusStops];
+    [self addPolygonOverlay];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -54,15 +56,17 @@
 
 - (void)addPolygonOverlay
 {
-    CLLocationCoordinate2D  points2[4];
-    points2[0] = CLLocationCoordinate2DMake(41.878114, -87.629798);
-    points2[1] = CLLocationCoordinate2DMake(41.878114, -88.65);
-    points2[2] = CLLocationCoordinate2DMake(41.89, -88.65);
-    points2[3] = CLLocationCoordinate2DMake(41.89, -87.629798);
+    CLLocationCoordinate2D  points[4];
+    points[0] = CLLocationCoordinate2DMake(41.705374, -87.635528);
+    points[1] = CLLocationCoordinate2DMake(41.705374, -87.603077);
+    points[2] = CLLocationCoordinate2DMake(41.875568, -87.635528);
+    points[3] = CLLocationCoordinate2DMake(41.875568, -87.603077);
     
     
-    MKPolygon* poly2 = [MKPolygon polygonWithCoordinates:points2 count:4];
-    [__mapView addOverlay:poly2];
+    MKPolygon* poly = [MKPolygon polygonWithCoordinates:points count:4];
+    poly.title = @"loop";
+    poly.subtitle = @"the famous Chicago loop";
+    [__mapView addOverlay:poly];
 }
 
 - (IBAction)mapListToggle:(UISegmentedControl *)segment
@@ -170,13 +174,13 @@
     
     if ([overlay isKindOfClass:[MKPolygon class]])
     {
-        MKPolygonView *aView = [[MKPolygonView alloc] initWithPolygon:overlay];
+        MKPolygonView *polygonView = [[MKPolygonView alloc] initWithPolygon:overlay];
         
-        aView.fillColor = [[UIColor cyanColor] colorWithAlphaComponent:0.2];
-        aView.strokeColor = [[UIColor blueColor] colorWithAlphaComponent:0.7];
-        aView.lineWidth = 3;
+        polygonView.fillColor = [[UIColor cyanColor] colorWithAlphaComponent:0.2];
+        polygonView.strokeColor = [[UIColor blueColor] colorWithAlphaComponent:0.7];
+        polygonView.lineWidth = 3;
         
-        return aView;
+        return polygonView;
     }
     
     return nil;
