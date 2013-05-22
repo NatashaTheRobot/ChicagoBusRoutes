@@ -25,8 +25,6 @@
 		9CB511E6174BF8BF00505DAE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CB511E5174BF8BF00505DAE /* CoreLocation.framework */; };
 		9CB511E9174BF9F600505DAE /* BusStop.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CB511E8174BF9F600505DAE /* BusStop.m */; };
 		9CB511EC174C070700505DAE /* BusDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CB511EB174C070700505DAE /* BusDetailViewController.m */; };
-		9CB511EF174C151000505DAE /* LoopOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CB511EE174C150F00505DAE /* LoopOverlay.m */; };
-		9CB511F2174C214100505DAE /* OverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CB511F1174C214100505DAE /* OverlayView.m */; };
 		9CB511F4174C218500505DAE /* rectangle.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9CB511F3174C218500505DAE /* rectangle.jpg */; };
 		9CB511F6174C246C00505DAE /* indigo_eiffel_blog.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CB511F5174C246B00505DAE /* indigo_eiffel_blog.png */; };
 		9CB511FD174CEF4F00505DAE /* MetraAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CB511FC174CEF4E00505DAE /* MetraAnnotationView.m */; };
@@ -60,10 +58,6 @@
 		9CB511E8174BF9F600505DAE /* BusStop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStop.m; sourceTree = "<group>"; };
 		9CB511EA174C070700505DAE /* BusDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusDetailViewController.h; sourceTree = "<group>"; };
 		9CB511EB174C070700505DAE /* BusDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusDetailViewController.m; sourceTree = "<group>"; };
-		9CB511ED174C150F00505DAE /* LoopOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopOverlay.h; sourceTree = "<group>"; };
-		9CB511EE174C150F00505DAE /* LoopOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopOverlay.m; sourceTree = "<group>"; };
-		9CB511F0174C214100505DAE /* OverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayView.h; sourceTree = "<group>"; };
-		9CB511F1174C214100505DAE /* OverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayView.m; sourceTree = "<group>"; };
 		9CB511F3174C218500505DAE /* rectangle.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rectangle.jpg; sourceTree = "<group>"; };
 		9CB511F5174C246B00505DAE /* indigo_eiffel_blog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = indigo_eiffel_blog.png; sourceTree = "<group>"; };
 		9CB511FB174CEF4E00505DAE /* MetraAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetraAnnotationView.h; sourceTree = "<group>"; };
@@ -88,6 +82,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9C9BA559174D03D900A300B8 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				9C9BA554174CF19400A300B8 /* pace.png */,
+				9C9BA552174CF18900A300B8 /* metra.png */,
+				9CB511F3174C218500505DAE /* rectangle.jpg */,
+				9CB511F5174C246B00505DAE /* indigo_eiffel_blog.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
 		9CB511B4174BF83100505DAE = {
 			isa = PBXGroup;
 			children = (
@@ -135,14 +140,7 @@
 				9CB511FC174CEF4E00505DAE /* MetraAnnotationView.m */,
 				9CB511FE174CEF8300505DAE /* PaceAnnotationView.h */,
 				9CB511FF174CEF8400505DAE /* PaceAnnotationView.m */,
-				9CB511ED174C150F00505DAE /* LoopOverlay.h */,
-				9CB511EE174C150F00505DAE /* LoopOverlay.m */,
-				9CB511F0174C214100505DAE /* OverlayView.h */,
-				9CB511F1174C214100505DAE /* OverlayView.m */,
-				9C9BA554174CF19400A300B8 /* pace.png */,
-				9C9BA552174CF18900A300B8 /* metra.png */,
-				9CB511F3174C218500505DAE /* rectangle.jpg */,
-				9CB511F5174C246B00505DAE /* indigo_eiffel_blog.png */,
+				9C9BA559174D03D900A300B8 /* images */,
 				9CB511C7174BF83200505DAE /* Supporting Files */,
 			);
 			path = ChicagoBusRoutes;
@@ -237,8 +235,6 @@
 				9CB511DD174BF83200505DAE /* ViewController.m in Sources */,
 				9CB511E9174BF9F600505DAE /* BusStop.m in Sources */,
 				9CB511EC174C070700505DAE /* BusDetailViewController.m in Sources */,
-				9CB511EF174C151000505DAE /* LoopOverlay.m in Sources */,
-				9CB511F2174C214100505DAE /* OverlayView.m in Sources */,
 				9CB511FD174CEF4F00505DAE /* MetraAnnotationView.m in Sources */,
 				9CB51200174CEF8400505DAE /* PaceAnnotationView.m in Sources */,
 				9C9BA558174CF45C00A300B8 /* ListViewController.m in Sources */,

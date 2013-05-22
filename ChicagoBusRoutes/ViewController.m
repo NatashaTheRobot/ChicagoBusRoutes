@@ -9,8 +9,6 @@
 #import "ViewController.h"
 #import "BusStop.h"
 #import "BusDetailViewController.h"
-#import "LoopOverlay.h"
-#import "OverlayView.h"
 #import "MetraAnnotationView.h"
 #import "PaceAnnotationView.h"
 #import "ListViewController.h"
@@ -27,8 +25,6 @@
 - (IBAction)mapListToggle:(id)sender;
 
 - (void)getBusStops;
-
-@property (strong, nonatomic) LoopOverlay *overlay;
 
 @end
 
@@ -48,10 +44,6 @@
     __mapView.region = region;
         
     [self getBusStops];
-    
-    self.overlay = [[LoopOverlay alloc] init];
-        
-    [__mapView addOverlay:self.overlay];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -60,28 +52,35 @@
 
 }
 
+- (void)addPolygonOverlay
+{
+    CLLocationCoordinate2D  points2[4];
+    points2[0] = CLLocationCoordinate2DMake(41.878114, -87.629798);
+    points2[1] = CLLocationCoordinate2DMake(41.878114, -88.65);
+    points2[2] = CLLocationCoordinate2DMake(41.89, -88.65);
+    points2[3] = CLLocationCoordinate2DMake(41.89, -87.629798);
+    
+    
+    MKPolygon* poly2 = [MKPolygon polygonWithCoordinates:points2 count:4];
+    [__mapView addOverlay:poly2];
+}
+
 - (IBAction)mapListToggle:(UISegmentedControl *)segment
 {
-    switch (segment.selectedSegmentIndex) {
-        case 0:
+    if (segment.selectedSegmentIndex == 0) {        
+        
+        [UIView animateWithDuration:0.5 animations:^{
             __mapView.alpha = 1;
             __containerView.alpha = 0;
-            break;
-        case 1:
+        }];
+        
+    } else {
+        
+        [UIView animateWithDuration:0.5 animations:^{
             __mapView.alpha = 0;
             __containerView.alpha = 1;
-            break;
-        default:
-            __mapView.alpha = 1;
-            __containerView.alpha = 0;
-            break;
+        }];
     }
-    
-    
-//    [UIView animateWithDuration:0.5 animations:^{
-//        dimmerView.alpha = 0.5;
-//        containerView.alpha = 1;
-//    }];
 }
 
 - (void)getBusStops
@@ -169,10 +168,18 @@
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id < MKOverlay >)overlay
 {
     
-    OverlayView *mapOverlayView = [[OverlayView alloc] initWithOverlay:self.overlay];
+    if ([overlay isKindOfClass:[MKPolygon class]])
+    {
+        MKPolygonView *aView = [[MKPolygonView alloc] initWithPolygon:overlay];
+        
+        aView.fillColor = [[UIColor cyanColor] colorWithAlphaComponent:0.2];
+        aView.strokeColor = [[UIColor blueColor] colorWithAlphaComponent:0.7];
+        aView.lineWidth = 3;
+        
+        return aView;
+    }
     
-    return mapOverlayView;
-
+    return nil;
 }
 
 @end
